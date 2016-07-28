@@ -16,7 +16,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
 public class MainActivity extends Activity {
@@ -72,18 +74,25 @@ public class MainActivity extends Activity {
         }
         public void run(){
             try{
-                s = new Socket("192.168.43.94",30000);
+                Log.d("tcptest","111111111111");
+                s = new Socket();
+                s.setSoTimeout(100);
+                s.connect(new InetSocketAddress("www.baidu.com",8080));
+                Log.d("tcptest","222222222222");
                 br = new BufferedReader(new InputStreamReader((s.getInputStream())));
                 os = s.getOutputStream();
                 Log.d("tcp test","start tcp client");
                 new Thread(){
                     public void run(){
                         String content = null;
+                        char[] temp = new char[100];
                         Log.d("tcp test","get server info");
                         try{
                             while(true){
-                                content = br.readLine();
+                                br.read(temp);
+                                content = String.valueOf(temp);
                                 if(content != null) {
+                                    Log.d("tcp test","get server info");
                                     Message msg = new Message();
                                     msg.what = 0x123;
                                     msg.obj = content;
@@ -92,7 +101,8 @@ public class MainActivity extends Activity {
                                 }
                             }
                         }
-                        catch (IOException e){
+                        catch (Exception e){
+                            Log.d("tcp test","get server err..........");
                             e.printStackTrace();
                         }
                     }
