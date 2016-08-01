@@ -9,6 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gary.tcp_test.MainActivity">
+    <com.gary.tcp_test.marqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/hello_world"
+        android:textSize="20dp"
+        android:singleLine="true"
+        android:focusable="true"
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:id="@+id/mar"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="60dp"

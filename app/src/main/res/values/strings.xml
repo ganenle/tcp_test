@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TCP_test</string>
+    <string name="hello_world">textView实现跑马灯显示，欢迎来到安卓世界。。。</string>
 </resources>
